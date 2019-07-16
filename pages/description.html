@@ -1,0 +1,87 @@
+
+<div class="row" style="width:80%;margin-left:auto;margin-right:auto;margin-bottom:2%">
+
+
+<div class="col-xs-12 col-sm-6 col-md-6" style="margin-top:2%">
+  <div class="mdl-card mdl-shadow--2dp" style="margin-top:2%;margin-left:auto;margin-right:auto;height:320px;width:100%">
+
+    <img src="pics/hybra.jpeg" alt="Item" style="margin-top:auto;margin-bottom:auto;width:100%"></img>
+
+
+  </div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-6"  style="margin-top:2%">
+  <div class="mdl-card mdl-shadow--2dp" style="padding:20px;margin-top:2%;margin-left:auto;margin-right:auto;height:auto;width:auto">
+    <form>
+      <div class="form-group" style="margin-bottom:20px">
+           <label for="changesize" class="col-md-6 control-label">Change size</label>
+
+           <div class="col-md-6">
+             <select id="changesize" class="form-control">
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+             </select>
+           </div>
+         </div>
+         <br/>
+
+
+
+         <div class="form-group"style="margin-bottom:30px">
+              <span class="col-md-6"></span>
+              <span class="col-md-6">{{price}}</span>
+            </div>
+        <div class="form-group" style="margin-bottom:20px">
+
+                 <div class="col-md-4 col-xs-6 col-sm-6">
+                   <input id="slider" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="1" tabindex="0" oninput="showMessage(this.value)" onchange="showMessage(this.value)">
+
+                 </div>
+                 <div class="col-md-2 col-xs-6 col-sm-6">
+                  <div id="message">1</div>
+                  </div>
+
+                 <div class="col-md-6">
+                 <label for="changesize" class="control-label">100 available</label>
+                 </div>
+
+               </div>
+
+               <div class="form-group">
+
+
+                        <div class="col-md-12">
+                        <label for="changesize" class="control-label">Description</label>
+                        </div>
+                        <div class="col-md-12">
+                         <span>{{description}}</span>
+                         </div>
+                      </div>
+
+                  <div class="form-group">
+                        <!-- Accent-colored raised button with ripple -->
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent col-md-12 col-xs-12 col-sm-12">
+                    Add to cart
+                  </button>
+                </div>
+
+
+
+
+
+
+
+
+
+  </form>
+
+
+  </div>
+
+</div>
+
+
+</div>

@@ -1,0 +1,11 @@
+.demo-card-square.mdl-card {
+
+  height: 320px;
+  width: auto;
+
+}
+.demo-card-square > .mdl-card__title {
+  
+  background:
+    url('pics/hybra.jpg') bottom right 15% no-repeat;
+}

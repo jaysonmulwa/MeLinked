@@ -1,0 +1,208 @@
+
+<div class="row" style="width:80%;margin-left:auto;margin-right:auto;margin-bottom:2%">
+
+
+<div class="col-xs-12 col-sm-6 col-md-6" style="margin-top:2%">
+  <div class="mdl-card mdl-shadow--2dp" style="margin-top:2%;margin-left:auto;margin-right:auto;height:320px;width:100%">
+
+    <img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}} alt="Item" style="margin-top:auto;margin-bottom:auto;width:100%"></img>
+
+
+  </div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-6"  style="margin-top:2%">
+  <div class="mdl-card mdl-shadow--2dp" style="padding:20px;margin-top:2%;margin-left:auto;margin-right:auto;height:auto;width:auto">
+    <form>
+      <div class="form-group" style="margin-bottom:20px">
+           <label for="changesize" class="col-md-6 control-label">{{product.name}}</label>
+
+           <div class="col-md-6">
+
+           </div>
+         </div>
+         <br/>
+
+
+      <div class="form-group" style="margin-bottom:20px">
+           <label for="changesize" class="col-md-6 control-label">Change size</label>
+
+           <div class="col-md-6">
+             <select id="changesize" class="form-control">
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+             </select>
+           </div>
+         </div>
+         <br/>
+
+
+
+         <div class="form-group"style="margin-bottom:30px">
+              <span class="col-md-6"></span>
+              <span class="col-md-6">{{price}}</span>
+            </div>
+        <div class="form-group" style="margin-bottom:20px">
+
+                 <div class="col-md-4 col-xs-6 col-sm-6">
+                   <input id="slider" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="1" tabindex="0" oninput="showMessage(this.value)" onchange="showMessage(this.value)">
+
+                 </div>
+                 <div class="col-md-2 col-xs-6 col-sm-6">
+                  <div id="message">1</div>
+                  </div>
+
+                 <div class="col-md-6">
+                 <label for="changesize" class="control-label">100 available</label>
+                 </div>
+
+               </div>
+
+
+
+
+
+
+               <div class="form-group">
+
+
+                        <div class="col-md-12">
+                        <label for="changesize" class="control-label">Description</label>
+                        </div>
+                        <div class="col-md-12">
+                         <span>{{product.description}}</span>
+                         </div>
+                      </div>
+
+
+
+
+
+                      <div class="form-group">
+
+
+                        <div class="row" style="margin-left:auto;margin-right:auto;margin-bottom:2%">
+                        <div class="col-xs-4 col-sm-4 col-md-5">
+                          <button  ng-click="cart.addItem(product.sku, product.name, product.price, 1)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                            Add to cart
+                          </button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                          <button
+                          ng-click="cart.addItem(product.sku, product.name, product.price, -10000)"
+                          ng-disabled="cart.getTotalCount(product.sku) < 1"
+                           class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                            Remove from cart
+                          </button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-3">
+                          <!-- Accent-colored raised button with ripple -->
+                    <button onclick="window.location.href=''" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                      Back
+                    </button>
+
+                        </div>
+                        </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row" style="margin-left:auto;margin-right:auto;margin-bottom:2%">
+                    <div class="col-xs-4 col-sm-4 col-md-12">
+                      <a href="#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+
+                      <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                      <span ng-show="cart.getTotalCount(product.sku) > 0"><br />This item is in the cart</span>
+                  </a>
+                </div>
+                </div>
+                </div>
+
+
+
+
+
+  </form>
+
+
+  </div>
+
+</div>
+
+
+</div>
+
+<!--
+<p class="text-info">
+    <img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}"/>
+    {{product.name}}: {{product.description}}<br />
+</p>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+
+            
+            <table class="table table-bordered">
+
+                <tr class="well">
+                    <td class="tdRight" colspan="3" >
+                        <a href="#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                            <i class="icon-shopping-cart" />
+                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                            <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tdRight"><b>Calories</b></td>
+                    <td class="tdCenter"><h2>{{product.cal}}</h2></td>
+                    <td />
+                </tr>
+                <tr ng-repeat="(nutrientName, nutrientValue) in product.nutrients">
+                    <td class="tdRight"><b>{{nutrientName}}</b></td>
+                    <td class="tdCenter"><img ng-src="img/r{{nutrientValue}}.png" alt="{{nutrientValue}}" /></td>
+                    <td>
+                        <b>{{store.dvaCaption[nutrientValue]}}</b>:
+                        {{store.dvaRange[nutrientValue]}}
+                        of the recommended daily value.
+                    </td>
+                </tr>
+
+                <tr class="well">
+                    <td class="tdRight" colspan="3" >
+                        <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                            <i class="icon-shopping-cart" />
+                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                            <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+                        </a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+        <div class="span4">
+            <button
+                class="btn btn-block btn-success"
+                ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
+                <i class="icon-shopping-cart icon-white" /> Add Cart
+            </button>
+            <button
+                class="btn btn-block btn-danger"
+                ng-click="cart.addItem(product.sku, product.name, product.price, -10000)"
+                ng-disabled="cart.getTotalCount(product.sku) < 1">
+                <i class="icon-trash icon-white" /> Remove Cart
+            </button>
+            <button
+                class="btn btn-block"
+                onclick="window.location.href=''">
+                <i class="icon-chevron-left" /> Back to Store
+            </button>
+        </div>
+    </div>
+</div>
+-->

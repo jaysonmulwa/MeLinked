@@ -1,0 +1,140 @@
+
+<div class="row" style="width:95%;margin-left:auto;margin-right:auto;margin-bottom:2%">
+  <div class="col-xs-12 col-sm-12 col-md-12"  style="margin-top:2%">
+
+<p class="">
+    Thanks for shopping at MeLinked Online Supermarket.<br />
+    This is your shopping cart. Here you can edit the items,
+    go back to the store, clear the cart, or check out.
+</p>
+</div></div>
+
+<div class="row" style="width:95%;margin-left:auto;margin-right:auto;margin-bottom:2%">
+  <div class="col-xs-12 col-sm-12 col-md-12"  style="margin-top:2%">
+    <!-- items -->
+    <table class="table table-bordered">
+
+        <!-- header -->
+        <tr class="well">
+            <td><b>Item</b></td>
+            <td class="tdCenter"><b>Quantity</b></td>
+            <td class="tdRight"><b>Price</b></td>
+            <td/>
+        </tr>
+
+        <!-- empty cart message -->
+        <tr ng-hide="cart.getTotalCount() > 0" >
+            <td class="tdCenter" colspan="4">
+                Your cart is empty.
+            </td>
+        </tr>
+
+        <!-- cart items -->
+        <tr ng-repeat="item in cart.items | orderBy:'name'">
+            <td>{{item.name}}</td>
+
+
+
+
+            <td class="tdCenter">
+              <div class="input-append">
+                <!-- use type=tel instead of  to prevent spinners -->
+                <input
+                    class="span3 text-center" type="tel"
+                    ng-model="item.quantity"
+                    ng-change="cart.saveItems()" />
+                <button
+                    class="btn btn-success" type="button"
+                    ng-disabled="item.quantity >= 1000"
+                    ng-click="cart.addItem(item.sku, item.name, item.price, +1)">+</button>
+                <button
+                    class="btn btn-inverse" type="button"
+                    ng-disabled="item.quantity <= 1"
+                    ng-click="cart.addItem(item.sku, item.name, item.price, -1)">-</button>
+              </div>
+            </td>
+            <td class="tdRight">{{item.price * item.quantity | currency}}</td>
+            <td class="tdCenter" title="remove from cart">
+                <a class="mdl-navigation__link" href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >
+                    <i class="material-icons md-24 md-light">cancel</i>
+                </a>
+            </td>
+        </tr>
+
+        <!-- footer -->
+        <tr class="well">
+            <td><b>Total</b></td>
+            <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
+            <td class="tdRight"><b>{{cart.getTotalPrice() | currency}}</b></td>
+            <td />
+        </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="row" style="width:95%;margin-left:auto;margin-right:auto;margin-bottom:2%">
+  <div class="col-xs-12 col-sm-6 col-md-6"  style="margin-top:2%">
+    <div class="demo-card-square mdl-card mdl-shadow--2dp" style="text-align:center;margin-left:auto;margin-right:auto;height:auto">
+
+      <!-- Colored raised button -->
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+      onclick="window.location.href='#/category'"
+      style="margin:5%"
+       >
+        <i class="material-icons md-24 md-light">arrow_back</i>Back to Category Menu
+      </button>
+
+
+      <!-- Accent-colored raised button with ripple -->
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+      ng-click="cart.clearItems()"
+      ng-disabled="cart.getTotalCount() < 1"
+      style="margin:5%"
+>
+    <i class="material-icons md-24 md-light">remove_shopping_cart</i> Clear Cart
+</button>
+
+
+
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6"  style="margin-top:2%">
+    <div class="demo-card-square mdl-card mdl-shadow--2dp" style="text-align:center;margin-left:auto;margin-right:auto;height:auto">
+
+              <!-- Accent-colored raised button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                ng-click="cart.checkout('PayPal')"
+                ng-disabled="cart.getTotalCount() < 1"
+                style="margin:5%"
+                >
+          <i class="material-icons md-24 md-light">monetization_on</i> Checkout using PayPal
+        </button>
+
+        <!-- Accent-colored raised button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+        ng-click="cart.checkout('Google')"
+        ng-disabled="cart.getTotalCount() < 1"
+        style="margin:5%"
+        >
+            <i class="material-icons md-24 md-light">monetization_on</i> Checkout using google
+        </button>
+
+        <p class="text-info">
+            <button
+                class="btn btn-block btn-link"
+                ng-click="cart.checkout('PayPal')"
+                ng-disabled="cart.getTotalCount() < 1" >
+                <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
+            </button>
+            <button
+                class="btn btn-block btn-link"
+                ng-click="cart.checkout('Google')"
+                ng-disabled="cart.getTotalCount() < 1" >
+                <img src="https://checkout.google.com/buttons/checkout.gif?w=168&h=44&style=white&variant=text" alt="checkoutGoogle"/>
+            </button>
+        </p>
+
+    </div>
+  </div>
+</div>
